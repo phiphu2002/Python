@@ -1,8 +1,8 @@
 ''' This URL shortener
-    receives a list of URLs, in a file named "urls", and returns a list of shortened URLs, in a file named "shortened_urls", ex: "http://en.wikipedia.org/wiki/URL_shortening" is shortened to "http://localhost/a_random_string"
-    stores shortened URLs to a Database
-    starts a http server onlocal host
-    redirects the request of "http://localhost/a_random_string" to "http://en.wikipedia.org/wiki/URL_shortening"
+    1. receives a list of URLs, in a file named "urls", and returns a list of shortened URLs, in a file named "shortened_urls", ex: "http://en.wikipedia.org/wiki/URL_shortening" is shortened to "http://localhost/a_random_string"
+    2. stores shortened URLs to a Database
+    3. starts a http server onlocal host
+    4. redirects the request of "http://localhost/a_random_string" to "http://en.wikipedia.org/wiki/URL_shortening"
 '''
 #python urlShortener.py
 #23-June 2017 - Version 1.0
@@ -29,8 +29,8 @@ g_urls = {}#This is a set of g_url s
            #{hashlib.md5(g_url["short"]).hexdigest(), g_url}
 G_SHORT_DOMAIN_NAME = "localhost"
 G_PORT = 80
-G_INPUT_FILE_NAME = "full"
-G_OUTPUT_FILE_NAME = "short"
+G_INPUT_FILE_NAME = "full"#This file includes a list of full urls, which are inputs of the app
+G_OUTPUT_FILE_NAME = "short"#This file outputs a list of shortened urls, which could be used to test the app 
 
 def generateRandomStr(l):
     '''
@@ -114,7 +114,7 @@ def redirectAll(path):
 
 def printDatabase():
     global g_urls
-    for k in g_urls:
+    for h in g_urls:
         logging.warning("%s - %s - %s" % (h, g_urls[h]['full'], g_urls[h]['short']))
 
 if __name__ == "__main__":
